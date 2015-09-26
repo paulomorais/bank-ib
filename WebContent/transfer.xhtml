@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:composition template="/template/template.xhtml">
+	<ui:param name="title" value="TransferAccount: #{AccountMBean.account.id} " />
+	<style>
+		.alignRight>TR>TD> {
+			text-align: right;
+		}
+	</style>
+	<ui:define name="body">
+		<h:form id="search">
+			<h:panelGrid columns="2" id="dialogPanel" width="100%">
+				<p:fieldset legend="Sender" style="width: 400px; height: 135px;" >
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel styleClass="textHeader" value="Name: "/>
+						<h:outputText styleClass="textHeader" value="#{AccountMBean.account.user.name}"/>
+						
+						<p:outputLabel styleClass="textHeader" value="Account Number: "/>
+						<h:outputText styleClass="textHeader" value="#{AccountMBean.account.id}"/>
+			   		</h:panelGrid>
+			    </p:fieldset>
+				<p:fieldset legend="Receiver" style="width: 400px; height: 135px;" id="receiverData" >
+					<h:panelGrid columns="2" cellpadding="5" rendered="#{AccountMBean.transferStage == 1}">
+					
+						<p:outputLabel styleClass="textHeader" value="Receivers Account Number:"/>
+						<p:inputText id="accReveicer" value="#{AccountMBean.receiverAccount.id}"  
+							required="true" autocomplete="off" label="Receivers Account Number">
+						</p:inputText>
+						
+						<p:outputLabel styleClass="textHeader" value="Amount to transfer:"/>
+						<p:inputText id="value" value="#{AccountMBean.transaction.value}" required="true" autocomplete="off"
+							label="Amount to transfer" validatorMessage="Value not permited!">
+							<f:validateDoubleRange minimum="0.01" maximum="10000.0"/>
+						</p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2" cellpadding="5" rendered="#{AccountMBean.transferStage == 2}" >
+						<h:outputLabel styleClass="textHeader" value="Name: "/>
+						<h:outputText styleClass="textHeader" value="#{AccountMBean.receiverAccount.user.name}"/>
+						
+						<h:outputLabel styleClass="textHeader" value="Account Number: "/>
+						<h:outputText styleClass="textHeader" value="#{AccountMBean.receiverAccount.id}"/>
+						
+						<h:outputLabel styleClass="textHeader" value="Value: "/>
+						<h:outputText styleClass="textHeader" value="#{AccountMBean.transaction.value}">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:panelGrid>
+			<h:panelGrid columns="2" id="dialogPanel2" width="100%">
+				<p:commandButton id="cancelButtonS3" value="Cancel" ajax="false" immediate="true"
+							action="#{AccountMBean.cancelTransfer}" />
+				<h:panelGrid id="gridNext" style="text-align: right" width="100%">
+						<p:commandButton id="next2" value="Next..." ajax="true" 
+							actionListener="#{AccountMBean.validateTransfer}"
+							rendered="#{AccountMBean.transferStage == 1}"
+							update=":search:receiverData, :search:mainGrowl, gridNext" />
+						<p:commandButton id="submitButton3" value="Confirm" ajax="false" 
+							action="#{AccountMBean.executeTransfer}"
+							rendered="#{AccountMBean.transferStage == 2}" />
+				</h:panelGrid>
+			</h:panelGrid>
+			<p:growl showDetail="true" showSummary="true" id="mainGrowl" />
+		</h:form>
+		<div class="balance">
+			<h:outputText value="Current Balance: "/>
+			<h:outputText value="${AccountMBean.account.balance}">
+				<f:convertNumber type="currency" currencySymbol="$" />
+			</h:outputText>
+		</div>
+	</ui:define>
+</ui:composition>
+</h:html>

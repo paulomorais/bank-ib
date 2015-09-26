@@ -1,0 +1,165 @@
+body {
+	margin: 0;
+	padding: 0;
+	font: bold 12px "Segoe UI", arial, sans-serif !important;
+	background-color: #929699;
+}
+
+fieldset {
+	float: left;
+	clear: both;
+	width: 100%;
+	border-style: none !important;
+	top: 50%;
+	height: 150px;
+	margin-top: -75px;
+	position: absolute;
+}
+
+label {
+	float: left;
+	width: 25%;
+	margin-right: 0.5em;
+	padding-top: 0.2em;
+	text-align: right;
+	margin-top: 10px !important;
+}
+
+input {
+	height: 25px;
+	left: 50%;
+	margin-left: -107px !important;
+	margin-top: 10px !important;
+	position: relative;
+	width: 200px;
+}
+
+button {
+	left: 50%;
+	width: 150px;
+	margin-left: -75px;
+	margin-top: 20px !important;
+}
+
+.login {
+	background-color: #2A2B2C;
+	box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.7);
+	color: white;
+	height: 100%;
+	left: 50%;
+	margin-left: -200px;
+	position: absolute;
+	width: 400px;
+}
+
+.loginHeader {
+	background-image: url("../images/title_small.png");
+	height: 57px;
+	left: 50%;
+	margin-left: -210px;
+	margin-top: -100px;
+	position: absolute;
+	top: 45%;
+	width: 420px;
+	line-height: 50px;
+	text-align: center;
+	font: bold 26px "Segoe UI", arial, sans-serif;
+	color: white;
+	vertical-align: middle;
+	padding-top: 3px;
+	text-shadow: black 0 0 25px;
+	background-repeat: no-repeat;
+}
+
+.loginContent {
+	height: 200px;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -100px;
+	position: absolute;
+	top: 50%;
+	width: 400px;
+}
+
+.logo {
+	background-image: url("../images/bank.jpg");
+	height: 152px;
+	left: 50%;
+	margin-left: -160px;
+	margin-top: -76px;
+	position: absolute;
+	top: 15%;
+	width: 320px;
+	cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+
+:-moz-placeholder {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+
+.ui-watermark {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+
+.ajaxWait {
+	bottom: 20%;
+    height: 60px;
+    left: 50%;
+    margin-left: -40px;
+    position: absolute;
+    text-align: center;
+    width: 100px;
+}
+
+.ui-growl-image-error {
+        background-position: 0 0;
+        background-image: url("../images/error.png");
+        width: 60px;
+        height: 48px;
+        float: left;
+}
+
+.ui-growl-image-info {
+        background-position: 0 0;
+        background-image: url("../images/success.png");
+        width: 60px;
+        height: 48px;
+        float: left;
+}
+
+.ui-growl-message {
+        padding:0 0 5px 0;
+        width:200px;
+        float:right;
+        margin-top: 3px;
+        vertical-align: middle;        
+}
+
+.ui-growl-item-container {
+		color: #2A2B2C;
+}
+
+.loginPosition {
+	left: 50%;
+    margin-left: -70px;
+    margin-top: 13px;
+    position: absolute;
+    text-align: center;
+    width: 140px;
+}
+.loginLink:link {
+	text-decoration: none;
+	color: white !important;
+}
+
+.loginLink:hover {
+	color: white !important;
+	text-decoration: underline !important;
+}

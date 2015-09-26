@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:composition template="/template/template.xhtml"> 
+	<ui:param name="title" value="Administration Monitor" />
+	<ui:define name="body">
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" />
+			<div class="ui-grid ui-grid-responsive">
+			    <div class="ui-grid-row">
+			        <div class="ui-grid-col-8" style="padding: 5px;">
+			        	
+						<p:dataTable id="mainTable" value="#{MonitorMBean.lazyAccount}" 
+								var="itemAccount" emptyMessage="No accounts found!" paginator="true"
+								paginatorPosition="bottom" rows="12" widgetVar="dataTable"
+								style="width: 100%; padding: 2px 2px; text-aling: center" lazy="true">
+			
+			
+							<p:column headerText="Account Number" style="text-align: center;" id="ID"
+								filterBy="#{itemAccount.accountNumberFilter}" filterMaxLength="6" filterStyle="width: 60px;">
+								<h:outputText style="font-weight: bold;" 
+									value="#{itemAccount.id}">
+									<f:convertNumber pattern="00000" integerOnly="true" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Account Holder" style="text-align: center;" id="name">
+								<h:outputText style="font-weight: bold;"
+									value="#{itemAccount.user.name}">
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Holder Username" style="text-align: center;" id="username"
+								filterBy="#{itemAccount.usernameFilter}" filterStyle="width: 60px;">
+								<h:outputText style="font-weight: bold;"
+									value="#{itemAccount.user.username}">
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Balance" style="text-align: center;"  id="balance">
+								<h:outputText value="#{itemAccount.balance}">
+									<f:convertNumber type="currency" currencySymbol="$"/>
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Select Account" style="text-align: center; " >
+								
+								<p:commandButton id="transferBt" value="View..." ajax="false" 
+											action="#{MonitorMBean.viewAccount}" >
+									<f:setPropertyActionListener target="#{MonitorMBean.account}" value="#{itemAccount}" />
+								</p:commandButton>
+								
+							</p:column>
+						</p:dataTable>
+					</div>
+					<div class="ui-grid-col-5" style="padding: 5px;">
+						<p:panel id="balancePanel" header="Logged Users" style="text-align: center;">
+						
+							<p:dataTable id="usersTable" value="#{MonitorMBean.users}" 
+								var="user" emptyMessage="No users found!" paginator="true"
+								paginatorPosition="bottom" rows="12" 
+								style="width: 100%; padding: 2px 2px; text-aling: center" 
+								paginatorTemplate="{PreviousPageLink} {NextPageLink}">
+			
+				
+								<p:column headerText="User" style="text-align: center;" id="userName">
+									<h:outputText style="font-weight: bold;" value="#{user.name}">
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						
+
+							<p:commandButton id="updateBtn" value="Update..." ajax="true" update="balancePanel"
+									actionListener="#{MonitorMBean.updateLoggedUserList}"/>
+					    </p:panel>
+			    	</div>
+			    </div>
+			</div>
+	  	</h:form>
+	</ui:define>
+</ui:composition>
+</h:html>

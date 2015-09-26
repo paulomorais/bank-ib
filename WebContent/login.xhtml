@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<h:head>
+		<link rel="stylesheet" type="text/css" href="./css/login.css" />
+		<script type="text/script" src="./js/login.js" />
+		<meta charset="UTF-8"/>
+		<title>PHPM - Internet Bank</title>
+		<meta name="author" content="Capgemini"/>
+		<link rel="SHORTCUT ICON" href="images/favicon.ico" />
+	</h:head>
+	<h:body>
+		<h:form id="loginForm" prependId="false">
+			<p:focus for="txtLogin"/>
+			<p:growl id="growl" life="5000" />
+			<div class="logo"></div>
+			<div class="login">
+				<div class="logo"></div>
+				<div class="loginHeader">Login</div>
+				<div class="loginContent">
+					<fieldset>
+						<p:watermark for="txtLogin" value="Username" />
+						<p:inputText id="txtLogin" required="true" maxlength="30"
+							value="#{LoginBean.username}" autocomplete="off" 
+							requiredMessage="Username required!">
+							<f:validateLength maximum="30" />
+						</p:inputText>
+						<br />
+						<p:watermark for="txtPass" value="Password" />
+						<p:password id="txtPass" required="true"
+							value="#{LoginBean.password}" autocomplete="off" requiredMessage="Password required!" 
+							maxlength="30">
+							<f:validateLength maximum="30" />
+						</p:password>
+						<br />
+						<p:commandButton value="Log-in" action="#{LoginBean.login}" 
+							ajax="false" id="cmdBtnLogin"/>
+						<br /><br /><br /><br /><br /><br /><br />
+						
+						    <p:commandButton value="Create Mock..." type="button" onclick="PF('dlg1').show();" />
+					</fieldset>
+				</div>
+			</div>
+			
+			<p:dialog header="Create Mock Data..." widgetVar="dlg1" width="550" hideEffect="fade">
+				<h:panelGrid columns="2" width="100%">
+					<h:outputText value="# users: " />
+					<h:inputText id="minMaxU" value="#{LoginBean.nUsers}" autocomplete="off"/>
+
+  					<h:outputText value="# accounts per user:" />
+  					<h:inputText id="minMaxA" value="#{LoginBean.nAccounts}" autocomplete="off" />
+
+					<h:outputText value="# transactions per account" />
+					<h:inputText id="minMaxT" value="#{LoginBean.nTransactions}" autocomplete="off"/>
+
+					<p:commandButton value="Cancel" type="button" onclick="PF('dlg1').hide();"/>
+					<p:commandButton id="cmdMock" value="Create mock..." onclick="PF('dlg1').hide();" ajax="true"
+						actionListener="#{LoginBean.createMock}" update="growl" />
+				</h:panelGrid>
+			</p:dialog>
+			<p:dialog style="position: relative;" header="Wait, creating Mock..." widgetVar="creatingMockPanel" width="350" height="300" hideEffect="fade">
+				<p:graphicImage url="./images/ajaxloadingbar.gif"/>
+			</p:dialog>
+	</h:form>
+	</h:body>
+</h:html>

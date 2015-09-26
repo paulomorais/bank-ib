@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:composition template="/template/template.xhtml">
+	<ui:param name="title" value="Monitoring Account: #{MonitorMBean.account.id} from #{MonitorMBean.account.user.name}" />
+	<ui:define name="body">
+		<h:form id="search">
+			<p:growl showDetail="true" showSummary="true" id="mainGrowl" />
+			<h:panelGrid columns="2" cellpadding="5" width="100%" styleClass="panelGrid">
+				<h:panelGrid columns="1" cellpadding="5" width="100%">
+					<p:panel id="balancePanel" header="Account Balance" style="text-align: center;">
+						<h:outputText styleClass="textHeader" value="${MonitorMBean.account.balance}">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText><br/>
+						<p:commandButton id="changeAccount" value="Change Account..." ajax="false" 
+								action="#{MonitorMBean.startup}" />
+				    </p:panel>
+				</h:panelGrid>
+				<p:dataTable id="monitoredTransactions" value="#{MonitorMBean.lazyTransactions}" lazy="true"
+					emptyMessage="No transactions" rows="20" paginator="true" 
+					paginatorPosition="bottom" style="width: 600px" var="transaction">
+					
+					<p:column headerText="Date" >
+						<h:outputText value="#{transaction.date}" >
+							<f:convertDateTime dateStyle="medium"/>
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Type">
+						<h:outputText value="#{transaction.type}" />
+					</p:column>
+	
+					<p:column headerText="Value" style="text-align: center;">
+						<h:outputText value="#{transaction.value}" >
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</h:html>

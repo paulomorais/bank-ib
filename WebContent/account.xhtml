@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:composition template="/template/template.xhtml">
+	<ui:param name="title" value="Account Selected: #{AccountMBean.account.id} " />
+	<ui:define name="body">
+		<h:form id="search">
+			<p:growl showDetail="true" showSummary="true" id="mainGrowl" />
+			<h:panelGrid columns="2" cellpadding="5" width="100%" styleClass="panelGrid">
+				<h:panelGrid columns="1" cellpadding="5" width="100%">
+					<p:panel id="balancePanel" header="Account Balance" style="text-align: center;">
+						<h:outputText styleClass="textHeader" value="${AccountMBean.account.balance}">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText><br/>
+						<p:commandButton id="changeAccount" value="Change Account..." ajax="false" 
+								action="#{AccountMBean.startup}" immediate="true"/>
+				    </p:panel>
+				    <p:panel id="transferPanel" header="Transfer" style="text-align: center;">
+						<p:commandButton id="transferBt" value="Money Transfer..." ajax="false" 
+								action="#{AccountMBean.transfer}" immediate="true"/>
+				    </p:panel>
+				    <p:panel id="statementPanel" header="Statement" style="text-align: center;">
+						<p:commandButton id="statementBt" value="Export Current Statement" ajax="false" 
+								action="#{AccountMBean.exportStatement}" />
+				    </p:panel>
+				</h:panelGrid>
+				<h:panelGrid columns="1" cellpadding="5" width="100%">
+					<p:fieldset legend="Filter" >
+						<h:panelGrid columns="5" cellpadding="5">
+							<p:outputLabel value="From: "/>
+							<p:calendar value="#{AccountMBean.startDate}"  required="true"
+								requiredMessage="Start date required!" />
+							
+							<p:outputLabel value="To: "/>
+							<p:calendar value="#{AccountMBean.endDate}" required="true"
+								requiredMessage="Final date required!"/>
+							
+							<p:commandButton id="applyFilter" value="Update filter" icon="ui-icon-search" 
+								action="#{AccountMBean.updateFilters}" update="transactionsTable, mainGrowl"/>
+				   		</h:panelGrid>
+				    </p:fieldset>
+					<p:dataTable id="transactionsTable" value="#{AccountMBean.lazyTransactions}" lazy="true"
+						emptyMessage="No transactions" rows="20" paginator="true" 
+						paginatorPosition="bottom" style="width: 600px" var="transaction"
+						paginatorTemplate="{PreviousPageLink} {NextPageLink}">
+						
+						<p:column headerText="Date" >
+							<h:outputText value="#{transaction.date}" >
+								<f:convertDateTime dateStyle="medium"/>
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Type">
+							<h:outputText value="#{transaction.type}" />
+						</p:column>
+		
+						<p:column headerText="Value" style="text-align: center;">
+							<h:outputText value="#{transaction.value}" >
+								<f:convertNumber type="currency" currencySymbol="$" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</h:html>

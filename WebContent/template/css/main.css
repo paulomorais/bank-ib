@@ -1,0 +1,240 @@
+body {
+	margin: 0;
+	padding: 0;
+	font: 10px "Segoe UI", arial, sans-serif !important;
+	background-color: #eff6fb;
+}
+
+.header {
+	height: 78px;
+	background-color: #70a8d2;
+	box-shadow: rgba(0, 0, 0, 0.701961) 0px 0px 5px 0px;
+}
+
+.headerContent {
+	width: 980px;
+	height: 78px;
+	margin: auto;
+}
+
+.logo {
+	background-image: url("../images/bank_small.jpg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+    height: 77px;
+    margin-top: 0px;
+    width: 150px;
+}
+
+.textLogo {
+	color: white;
+    cursor: pointer;
+    font: bold 32px/78px "Segoe UI",arial,sans-serif;
+    float: left;
+}
+
+.textLogoHighlight {
+	color: white;
+}
+
+.textHeader {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.panelGrid>tbody>tr>td {
+    vertical-align: top;
+}
+
+.alignRight td {
+	text-align: right;
+}
+
+.mainMenu {
+	color: white;
+    font-size: 12px;
+    font-weight: bold;
+    height: 78px;
+    line-height: 78px;
+    float: right; 
+}
+
+.mainMenuItem {
+	margin-left: 10px;
+}
+
+.mainMenu a:link,.mainMenu a:visited {
+	text-decoration: none;
+	color: white;
+}
+
+.mainMenu a:hover {
+	text-decoration: none;
+	color: #2E6E9E;
+}
+
+.mainMenu a:active {
+	text-decoration: none;
+	color: #519CFF;
+}
+
+.main {
+	margin: -10px auto auto;
+    width: 975px;
+}
+
+.mainTitle {
+	background-image: url("../images/title.png");
+    background-repeat: no-repeat;
+    color: white;
+    font: bold 26px "Segoe UI",arial,sans-serif;
+    height: 57px;
+    margin: auto;
+    padding-top: 3px;
+    text-align: center;
+    text-shadow: 0 0 15px #2E6E9E;
+    width: 1001px;
+}
+
+.balance {
+    color: white;
+    font: bold 26px "Segoe UI",arial,sans-serif;
+    height: 42px;
+    margin: auto;
+    padding-top: 3px;
+    text-align: center;
+    text-shadow: 0 0 15px #2E6E9E;
+    width: 976px;
+    background-color: #70a8d2;
+}
+
+.searchBox {
+	float: right;
+	font-size: 12px !important;
+	height: 14px;
+	margin-top: -21px;
+	width: 300px;
+}
+
+::-webkit-input-placeholder {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+
+:-moz-placeholder {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+
+.ui-watermark {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+
+.commonListArea {
+	height: 400px;
+}
+
+.insertDiv {
+	background-image: url("../../images/title_small.png");
+	background-repeat: no-repeat;
+	height: 150px;
+	left: 50%;
+	margin-left: -220px;
+	margin-top: 50px;
+	padding-top: 80px;
+	position: absolute;
+	text-align: center;
+	width: 420px;
+}
+
+.ui-growl-image-error {
+	background-position: 0 0;
+	background-image: url("../../images/error.png");
+	width: 60px;
+	height: 48px;
+	float: left;
+}
+
+.ui-growl-image-info {
+	background-position: 0 0;
+	background-image: url("../../images/success.png");
+	width: 60px;
+	height: 48px;
+	float: left;
+}
+
+.ui-growl-message {
+	padding: 0 0 5px 0;
+	width: 200px;
+	float: right;
+	margin-top: 3px;
+	vertical-align: middle;
+}
+
+.ui-growl-item-container {
+	color: #2A2B2C;
+}
+
+.titleInsert {
+	color: white;
+	font: bold 26px/44px "Segoe UI", arial, sans-serif;
+	height: 50px;
+	left: 0;
+	position: absolute;
+	text-shadow: 0 0 25px black;
+	top: 0;
+	width: 420px;
+	line-height: 44px;
+	cursor: default;
+}
+
+.insertionCombo {
+	width: 142px;
+	margin-top: 3px;
+}
+
+.iconLink {
+	float: left;
+	text-align: middle;
+}
+
+.ui-icon-pencil {
+	margin-left: 10px;
+}
+
+.ui-datatable-odd {
+	background: none;
+    background-color: #CFF1FF;
+}
+
+.striped-row {
+	background: none;
+	background-image: url('../images/striped-row.png');
+	background-repeat: repeat;
+}
+
+.centralizado {
+	text-align: center;
+}
+
+.ui-datatable .ui-column-filter {
+    width: 110px;
+}
+
+input {
+	width: 150px;
+}
+
+.formDialogTextarea {
+	width: 314px;
+}
+
+.ui-datatable th div.ui-dt-c, .ui-datatable .ui-datatable-data td div.ui-dt-c, .ui-datatable .ui-datatable-data-empty td div.ui-dt-c, .ui-datatable tfoot td div.ui-dt-c {
+	padding: 4px 2px;
+}
+
+.ui-datatable-scrollable .ui-datatable-scrollable-header-box, .ui-datatable-scrollable .ui-datatable-scrollable-footer-box {
+	padding-right: 18px;
+}

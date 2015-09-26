@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<h:head>
+	<link rel="stylesheet" type="text/css" href="./template/css/main.css" />
+	<meta charset="UTF-8"/>
+	<title>PHM - Internet Bank</title>
+	<link rel="SHORTCUT ICON" href="images/favicon.png" />
+</h:head>
+<h:body style="font-size: 1.1em;">
+	<div class="header">
+		<div class="headerContent">
+			<div class="logo"></div>
+			<div class="textLogo" onclick="window.location = './index.xhtml';">
+				PHM - <span class="textLogoHighlight">Internet Bank</span>
+			</div>
+			<h:form>
+				<div class="mainMenu">
+					<span class="mainMenuItem">
+						<p:commandButton id="monitorBrn" value="Monitor" ajax="false" action="#{LoginBean.monitor}"
+							rendered="#{LoginBean.user.type == 'ADMIN'}" />
+					</span>
+					<span class="mainMenuItem">
+						<h:outputText value="#{LoginBean.user.name}" />
+					</span>
+					<span class="mainMenuItem">
+						<p:commandButton id="statementBt" value="Log-out" ajax="false" action="#{LoginBean.logout}" />
+					</span>
+					
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<div class="mainTitle">#{title}</div>
+	<div class="main">
+		<ui:insert name="body" />
+	</div>
+</h:body>
+</h:html>
