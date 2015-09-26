@@ -16,7 +16,7 @@ public class UserService {
 	
 	public static void main(String[] args) {
 		UserService dao = new UserService();
-		dao.createMockData(10000, 4, 500);
+		dao.createMockData(1000, 4, 500);
 	}
 	
 	public List<User> list(int startAt, int size){

@@ -1,6 +1,8 @@
 package com.phpm.bank.view.mbean;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,17 +32,26 @@ public class MonitorMBean {
 	
 	private Account account = new Account();
 	private List<User> users = new ArrayList<User>();
+	private Date startDate;
+	private Date endDate;
 	
 	public MonitorMBean() {
+		Calendar calendar = Calendar.getInstance();
+		endDate = calendar.getTime();
+		calendar.add(Calendar.DATE, -30);
+		startDate = calendar.getTime();
 		lazyAccount = new LazyAccountDataModel(null);
 		updateLoggedUserList();
 	}
 
 	public String startup() {
-//		lazyAccount = new LazyAccountDataModel(null);
-		lazyTransactions = null;
+		lazyAccount = new LazyAccountDataModel(null);
 		updateLoggedUserList();
 		return "monitor.xhtml";
+	}
+	
+	public void updateFilters() {
+		lazyTransactions = new LazyTransactionDataModel(account.getId(), startDate, endDate);
 	}
 	
 	public void updateLoggedUserList(){
@@ -56,9 +67,9 @@ public class MonitorMBean {
 	}
 	
 	public String viewAccount() {
-		logger.debug("View Account." + account);
 		if (account != null){
-			lazyTransactions = new LazyTransactionDataModel(account.getId(), null, null);
+			logger.debug("Monitoring Account number: " + account.getId());
+			lazyTransactions = new LazyTransactionDataModel(account.getId(), startDate, endDate);
 		} else {
 			return null;
 		}
@@ -115,6 +126,22 @@ public class MonitorMBean {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	
 }

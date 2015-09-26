@@ -46,13 +46,12 @@ public class AccountMBean {
 	private AccountService accountService = new AccountService();
 	
 	public AccountMBean() {
-		lazyAccount = new LazyAccountDataModel(getLoggedUser().getUsername());
-		lazyAccount.setPageSize(10);
-		accounts = accountService.list(getLoggedUser().getUsername(), 0, 50);
 		Calendar calendar = Calendar.getInstance();
 		endDate = calendar.getTime();
 		calendar.add(Calendar.DATE, -30);
 		startDate = calendar.getTime();
+		
+		lazyAccount = new LazyAccountDataModel(getLoggedUser().getUsername());
 	}
 	
 

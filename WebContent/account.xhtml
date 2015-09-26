@@ -43,9 +43,8 @@
 				   		</h:panelGrid>
 				    </p:fieldset>
 					<p:dataTable id="transactionsTable" value="#{AccountMBean.lazyTransactions}" lazy="true"
-						emptyMessage="No transactions" rows="20" paginator="true" 
-						paginatorPosition="bottom" style="width: 600px" var="transaction"
-						paginatorTemplate="{PreviousPageLink} {NextPageLink}">
+						emptyMessage="No transactions" rows="15" paginator="true" 
+						paginatorPosition="bottom" style="width: 600px" var="transaction">
 						
 						<p:column headerText="Date" >
 							<h:outputText value="#{transaction.date}" >
