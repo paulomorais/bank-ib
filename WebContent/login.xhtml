@@ -9,8 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/login.css" />
 		<script type="text/script" src="./js/login.js" />
 		<meta charset="UTF-8"/>
-		<title>PHPM - Internet Bank</title>
-		<meta name="author" content="Capgemini"/>
+		<title>PHM - Internet Bank</title>
 		<link rel="SHORTCUT ICON" href="images/favicon.ico" />
 	</h:head>
 	<h:body>
@@ -25,41 +24,44 @@
 					<fieldset>
 						<p:watermark for="txtLogin" value="Username" />
 						<p:inputText id="txtLogin" required="true" maxlength="30"
-							value="#{LoginBean.username}" autocomplete="off" 
+							value="#{loginBean.username}" autocomplete="off" 
 							requiredMessage="Username required!">
 							<f:validateLength maximum="30" />
 						</p:inputText>
 						<br />
 						<p:watermark for="txtPass" value="Password" />
 						<p:password id="txtPass" required="true"
-							value="#{LoginBean.password}" autocomplete="off" requiredMessage="Password required!" 
+							value="#{loginBean.password}" autocomplete="off" requiredMessage="Password required!" 
 							maxlength="30">
 							<f:validateLength maximum="30" />
 						</p:password>
 						<br />
-						<p:commandButton value="Log-in" action="#{LoginBean.login}" 
+						<p:commandButton value="Log-in" action="#{loginBean.login}" 
 							ajax="false" id="cmdBtnLogin"/>
-						<br /><br /><br /><br /><br /><br /><br />
-						
-						    <p:commandButton value="Create Mock..." type="button" onclick="PF('dlg1').show();" />
+						<div style="position: fixed; top: 96%; left: 90%; visibility: hidden;">
+						    <p:commandLink value="create mock data..." type="button" onclick="PF('dlg1').show();" />
+						</div>
 					</fieldset>
 				</div>
 			</div>
 			
 			<p:dialog header="Create Mock Data..." widgetVar="dlg1" width="550" hideEffect="fade">
+				<h2>Attention!</h2>
+				<p>This execution will <b>DELETE</b> all data and create new entities according to the parameters below!</p>
+				<p>This operation can take several minutes to execute!</p>
 				<h:panelGrid columns="2" width="100%">
 					<h:outputText value="# users: " />
-					<h:inputText id="minMaxU" value="#{LoginBean.nUsers}" autocomplete="off"/>
+					<h:inputText id="minMaxU" value="#{loginBean.nUsers}" autocomplete="off"/>
 
   					<h:outputText value="# accounts per user:" />
-  					<h:inputText id="minMaxA" value="#{LoginBean.nAccounts}" autocomplete="off" />
+  					<h:inputText id="minMaxA" value="#{loginBean.nAccounts}" autocomplete="off" />
 
 					<h:outputText value="# transactions per account" />
-					<h:inputText id="minMaxT" value="#{LoginBean.nTransactions}" autocomplete="off"/>
+					<h:inputText id="minMaxT" value="#{loginBean.nTransactions}" autocomplete="off"/>
 
 					<p:commandButton value="Cancel" type="button" onclick="PF('dlg1').hide();"/>
 					<p:commandButton id="cmdMock" value="Create mock..." onclick="PF('dlg1').hide();" ajax="true"
-						actionListener="#{LoginBean.createMock}" update="growl" />
+						actionListener="#{loginBean.createMock}" update="growl" />
 				</h:panelGrid>
 			</p:dialog>
 			<p:dialog style="position: relative;" header="Wait, creating Mock..." widgetVar="creatingMockPanel" width="350" height="300" hideEffect="fade">

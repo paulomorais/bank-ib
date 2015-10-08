@@ -21,14 +21,14 @@
 			<h:form>
 				<div class="mainMenu">
 					<span class="mainMenuItem">
-						<p:commandButton id="monitorBrn" value="Monitor" ajax="false" action="#{LoginBean.monitor}"
-							rendered="#{LoginBean.user.type == 'ADMIN'}" />
+						<p:commandButton id="monitorBrn" value="Monitor" ajax="false" action="#{monitorBean.startup}"
+							rendered="#{loginBean.user.type == 'ADMIN'}" />
 					</span>
 					<span class="mainMenuItem">
-						<h:outputText value="#{LoginBean.user.name}" />
+						<h:outputText value="#{loginBean.user.name}" />
 					</span>
 					<span class="mainMenuItem">
-						<p:commandButton id="statementBt" value="Log-out" ajax="false" action="#{LoginBean.logout}" />
+						<p:commandButton id="statementBt" value="Log-out" ajax="false" action="#{loginBean.logout}" />
 					</span>
 					
 				</div>

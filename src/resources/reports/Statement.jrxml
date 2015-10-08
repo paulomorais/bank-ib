@@ -52,7 +52,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="32" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[PHPM Bank]]></text>
+				<text><![CDATA[PHM Bank]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Title" x="164" y="0" width="196" height="30" uuid="fd34f08d-731d-4515-836d-cc848575fad3"/>

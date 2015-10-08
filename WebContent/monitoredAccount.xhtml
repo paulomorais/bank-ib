@@ -5,37 +5,37 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<ui:composition template="/template/template.xhtml">
-	<ui:param name="title" value="Monitoring Account: #{MonitorMBean.account.id} from #{MonitorMBean.account.user.name}" />
+	<ui:param name="title" value="Monitoring Account: #{monitorBean.account.id} from #{monitorBean.account.user.name}" />
 	<ui:define name="body">
 		<h:form id="search">
 			<p:growl showDetail="true" showSummary="true" id="mainGrowl" />
 			<h:panelGrid columns="2" cellpadding="5" width="100%" styleClass="panelGrid">
 				<h:panelGrid columns="1" cellpadding="5" width="100%">
 					<p:panel id="balancePanel" header="Account Balance" style="text-align: center;">
-						<h:outputText styleClass="textHeader" value="${MonitorMBean.account.balance}">
+						<h:outputText styleClass="textHeader" value="${monitorBean.account.balance}">
 							<f:convertNumber type="currency" currencySymbol="$" />
 						</h:outputText><br/>
 						<p:commandButton id="changeAccount" value="Change Account..." ajax="false" 
-								action="#{MonitorMBean.startup}" immediate="true"/>
+								action="#{monitorBean.startup}" immediate="true"/>
 				    </p:panel>
 				</h:panelGrid>
 				<h:panelGrid columns="1" cellpadding="5" width="100%">
 					<p:fieldset legend="Filter" >
 						<h:panelGrid columns="5" cellpadding="5">
 							<p:outputLabel value="From: "/>
-							<p:calendar value="#{MonitorMBean.startDate}"  required="true"
+							<p:calendar value="#{monitorBean.startDate}"  required="true"
 								requiredMessage="Start date required!" />
 							
 							<p:outputLabel value="To: "/>
-							<p:calendar value="#{MonitorMBean.endDate}" required="true"
+							<p:calendar value="#{monitorBean.endDate}" required="true"
 								requiredMessage="Final date required!"/>
 							
 							<p:commandButton id="applyFilter" value="Update filter" icon="ui-icon-search" 
 								oncomplete="PF('dataTableController').filter();"
-								action="#{MonitorMBean.updateFilters}" update="monitoredTransactions, mainGrowl"/>
+								action="#{monitorBean.updateFilters}" update="monitoredTransactions, mainGrowl"/>
 				   		</h:panelGrid>
 				    </p:fieldset>
-					<p:dataTable id="monitoredTransactions" value="#{MonitorMBean.lazyTransactions}" lazy="true"
+					<p:dataTable id="monitoredTransactions" value="#{monitorBean.lazyTransactions}" lazy="true"
 						emptyMessage="No transactions" rows="15" paginator="true" widgetVar="dataTableController"
 						paginatorPosition="bottom" style="width: 600px" var="transaction">
 						

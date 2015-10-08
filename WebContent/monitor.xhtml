@@ -13,7 +13,7 @@
 			    <div class="ui-grid-row">
 			        <div class="ui-grid-col-8" style="padding: 5px;">
 			        	
-						<p:dataTable id="mainTable" value="#{MonitorMBean.lazyAccount}" 
+						<p:dataTable id="mainTable" value="#{monitorBean.lazyAccount}" 
 								var="itemAccount" emptyMessage="No accounts found!" paginator="true"
 								paginatorPosition="bottom" rows="12" widgetVar="dataTable"
 								style="width: 100%; padding: 2px 2px; text-aling: center" lazy="true">
@@ -45,32 +45,29 @@
 							<p:column headerText="Select Account" style="text-align: center; " >
 								
 							<p:commandButton id="transferBt" value="View..." ajax="false" 
-										action="#{MonitorMBean.viewAccount}" >
-								<f:setPropertyActionListener target="#{MonitorMBean.account}" value="#{itemAccount}" />
+										action="#{monitorBean.viewAccount}" >
+								<f:setPropertyActionListener target="#{monitorBean.account}" value="#{itemAccount}" />
 							</p:commandButton>
 								
 							</p:column>
 						</p:dataTable>
 					</div>
 					<div class="ui-grid-col-5" style="padding: 5px;">
-						<p:panel id="balancePanel" header="Logged Users" style="text-align: center;">
-						
-							<p:dataTable id="usersTable" value="#{MonitorMBean.users}" 
+						<p:panel id="balancePanel" header="Users logged now" style="text-align: center;">
+							<p:dataTable id="usersTable" value="#{loginBean.monitorInfoBean.loggedUsers}" 
 								var="user" emptyMessage="No users found!" paginator="true"
 								paginatorPosition="bottom" rows="12" 
-								style="width: 100%; padding: 2px 2px; text-aling: center" 
-								paginatorTemplate="{PreviousPageLink} {NextPageLink}">
-			
+								style="width: 100%; padding: 2px 2px; text-aling: center">
 				
-								<p:column headerText="User" style="text-align: center;" id="userName">
-									<h:outputText style="font-weight: bold;" value="#{user.name}">
-									</h:outputText>
+								<p:column headerText="Name" style="text-align: center;">
+									<h:outputText style="font-weight: bold;" value="#{user.name}" />
+								</p:column>
+								<p:column headerText="Username" style="text-align: center;">
+									<h:outputText style="font-weight: bold;" value="#{user.username}" />
 								</p:column>
 							</p:dataTable>
-						
 
-							<p:commandButton id="updateBtn" value="Update..." ajax="true" update="balancePanel"
-									actionListener="#{MonitorMBean.updateLoggedUserList}"/>
+							<p:commandButton id="updateBtn" value="Update..." ajax="true" update="usersTable"/>
 					    </p:panel>
 			    	</div>
 			    </div>
